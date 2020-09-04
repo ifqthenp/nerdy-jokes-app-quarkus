@@ -1,6 +1,10 @@
 package com.nerdyjokes;
 
 import io.vertx.core.http.HttpServerRequest;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Metered;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 
@@ -26,6 +30,21 @@ public class NerdyJokeResource {
     @RestClient
     NerdyJokeResourceClient client;
 
+    @Metered(
+            name = "requests",
+            unit = MetricUnits.SECONDS,
+            description = "Rate of requests"
+    )
+    @Timed(
+            name = "average-request",
+            unit = MetricUnits.SECONDS,
+            description = "Average duration of request"
+    )
+    @Counted(
+            name = "number-of-requests",
+            displayName = "Requests",
+            description = "How many requests have been processed"
+    )
     @GET
     @Path("/joke")
     @Produces(MediaType.APPLICATION_JSON)
