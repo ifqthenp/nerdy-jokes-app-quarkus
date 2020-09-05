@@ -36,12 +36,12 @@ public class NerdyJokeResource {
             description = "Rate of requests"
     )
     @Timed(
-            name = "average-request",
+            name = "average_request",
             unit = MetricUnits.SECONDS,
             description = "Average duration of request"
     )
     @Counted(
-            name = "number-of-requests",
+            name = "number_of_requests",
             displayName = "Requests",
             description = "How many requests have been processed"
     )
