@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: nerdy-jokes-app-quarkus-native
+  namespace: dev
+  labels:
+    environment: dev
+    app.kubernetes.io/monitoring: prometheus
+spec:
+  selector:
+    matchLabels:
+      environment: dev
+      app.kubernetes.io/name: nerdy-jokes-app-quarkus-native
+  endpoints:
+    - port: http

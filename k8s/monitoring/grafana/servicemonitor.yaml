@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    environment: dev
+    app.kubernetes.io/monitoring: prometheus
+spec:
+  selector:
+    matchLabels: {}
+  endpoints:
+    - port: grafana
